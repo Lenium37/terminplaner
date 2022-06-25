@@ -95,6 +95,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref } from 'vue';
 import type { FormInstance } from 'ant-design-vue';
 import dayjs from 'dayjs';
+import {useRouter} from 'vue-router'
 
 
 interface Appointment {
@@ -113,6 +114,7 @@ export default defineComponent({
 
   setup() {
     const formRef = ref<FormInstance>();
+    const router = useRouter();
 
 
     const defaultAppointment = (): Appointment[] => ([{
@@ -144,7 +146,7 @@ export default defineComponent({
     };
 
     const addAppointment = () => {
-      let date_to_use = dayjs();//('00:00', 'dd.MM.YYYY');
+      let date_to_use = dayjs();
       let time_start_to_use = dayjs('00:00', 'HH:mm');
       let time_end_to_use: dayjs.Dayjs = null;
 
@@ -154,23 +156,17 @@ export default defineComponent({
       }
 
       createTerminplanerForm.appointments.push({
-        date: date_to_use, // use Date from last entry if exists
+        date: date_to_use,
         time_start: time_start_to_use,
         time_end: time_end_to_use,
         id: Date.now(),
       });
     };
 
-    // const emptyAppointmentTime = (): AppointmentTime => ({
-    //   hour: 0,
-    //   minute: 0,
-    // });
-
-
     const onFinish = values => {
-      console.log('Received values of form:', values);
+      // console.log('Received values of form:', values);
       console.log('dynamicValidateForm.title:', createTerminplanerForm.title);
-      console.log('dynamicValidateForm.appointments:', createTerminplanerForm.appointments);
+      // console.log('dynamicValidateForm.appointments:', createTerminplanerForm.appointments);
 
       for (let i = 0; i < createTerminplanerForm.appointments.length; i++) {
         let appointment = createTerminplanerForm.appointments[i];
@@ -181,6 +177,9 @@ export default defineComponent({
         console.log('End time:', appointment.time_end);
 
       }
+      
+      router.push("/about")
+
     };
 
     return {

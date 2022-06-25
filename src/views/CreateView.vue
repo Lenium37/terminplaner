@@ -7,7 +7,8 @@
     @finish="onFinish"
   >
 
-     <a-typography-title>Umfrage erstellen</a-typography-title>
+     <a-typography-title>Terminplaner</a-typography-title>
+     <a-typography-title :level="2">Umfrage erstellen</a-typography-title>
 
      <a-form-item label="Titel" name="title"
           :rules="[{ required: true, message: 'Bitte einen Titel eingeben!' }]">
@@ -41,11 +42,10 @@
       >
         <a-date-picker 
           v-model:value="appointment.date" 
+          format="DD.MM.YY"
           placeholder="Datum"
         />
       </a-form-item>
-
-      <br/>
 
       <a-form-item
         :name="['appointments', index, 'time_start']"
@@ -70,7 +70,11 @@
           placeholder="Endzeit"
         />
       </a-form-item>
-      <MinusCircleOutlined @click="delAppointment(appointment)" />
+
+      <MinusCircleOutlined
+        @click="delAppointment(appointment)" 
+        style="margin-bottom: 24px;"
+      />
     </a-space>
 
     <a-form-item>
@@ -81,7 +85,7 @@
     </a-form-item>
 
     <a-form-item>
-      <a-button type="primary" html-type="submit">Erstellen</a-button>
+      <a-button type="primary" html-type="submit" style="float: right;">Erstellen</a-button>
     </a-form-item>
   </a-form>
 </template>
@@ -90,12 +94,15 @@
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref } from 'vue';
 import type { FormInstance } from 'ant-design-vue';
+import dayjs from 'dayjs';
+
 
 interface Appointment {
   id: number;
-  date: string;
-  time_start: string;
-  time_end: string;
+  date: dayjs.Dayjs;
+  time_start: dayjs.Dayjs;
+  time_end: dayjs.Dayjs;
+
 }
 
 export default defineComponent({
@@ -103,6 +110,7 @@ export default defineComponent({
     MinusCircleOutlined,
     PlusOutlined,
   },
+
   setup() {
     const formRef = ref<FormInstance>();
     const createTerminplanerForm = reactive<{ 
@@ -125,19 +133,47 @@ export default defineComponent({
         createTerminplanerForm.appointments.splice(index, 1);
       }
     };
+
     const addAppointment = () => {
+      let date_to_use = dayjs();//('00:00', 'dd.MM.YYYY');
+      let time_start_to_use = dayjs('00:00', 'HH:mm');
+      let time_end_to_use: dayjs.Dayjs = null;
+
+      if(createTerminplanerForm.appointments.length > 0) {
+        time_start_to_use = createTerminplanerForm.appointments[createTerminplanerForm.appointments.length - 1].time_start;
+        time_end_to_use = createTerminplanerForm.appointments[createTerminplanerForm.appointments.length - 1].time_end;
+      }
+
       createTerminplanerForm.appointments.push({
-        date: '', // use Date from last entry if exists
-        time_start: '', // use Time from last entry if exists
-        time_end: '',
+        date: date_to_use, // use Date from last entry if exists
+        time_start: time_start_to_use,
+        time_end: time_end_to_use,
         id: Date.now(),
       });
     };
+
+    // const emptyAppointmentTime = (): AppointmentTime => ({
+    //   hour: 0,
+    //   minute: 0,
+    // });
+
+
     const onFinish = values => {
       console.log('Received values of form:', values);
       console.log('dynamicValidateForm.title:', createTerminplanerForm.title);
       console.log('dynamicValidateForm.appointments:', createTerminplanerForm.appointments);
+
+      for (let i = 0; i < createTerminplanerForm.appointments.length; i++) {
+        let appointment = createTerminplanerForm.appointments[i];
+
+        console.log('Appointment', i);
+        console.log('Date:', appointment.date);
+        console.log('Start time:', appointment.time_start);
+        console.log('End time:', appointment.time_end);
+
+      }
     };
+
     return {
       formRef,
       createTerminplanerForm,

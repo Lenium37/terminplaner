@@ -177,8 +177,15 @@ export default defineComponent({
         console.log('End time:', appointment.time_end);
 
       }
+      let appointments = createTerminplanerForm.appointments;
       
-      router.push("/about")
+      router.push({
+        name: "select",
+        params: {
+          "appointments": JSON.stringify(appointments),
+            // "data": appointments[0].time_start.hour.toString(),
+          },
+      });
 
     };
 

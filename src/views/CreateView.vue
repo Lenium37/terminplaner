@@ -8,7 +8,7 @@
   >
 
      <a-typography-title>Terminplaner</a-typography-title>
-     <a-typography-title :level="2">Umfrage erstellen</a-typography-title>
+     <a-typography-title :level="3">Umfrage erstellen</a-typography-title>
 
      <a-form-item label="Titel" name="title"
           :rules="[{ required: true, message: 'Bitte einen Titel eingeben!' }]">
@@ -113,6 +113,15 @@ export default defineComponent({
 
   setup() {
     const formRef = ref<FormInstance>();
+
+
+    const defaultAppointment = (): Appointment[] => ([{
+      date: dayjs(),
+      time_start: null,
+      time_end: null,
+      id: Date.now()
+    }]);
+
     const createTerminplanerForm = reactive<{ 
           title: string, 
           name: string, 
@@ -124,12 +133,12 @@ export default defineComponent({
           name: '',
           description: '',
           place: '',
-          appointments: [],
+          appointments: defaultAppointment(),
     });
 
     const delAppointment = (item: Appointment) => {
       let index = createTerminplanerForm.appointments.indexOf(item);
-      if (index !== -1) {
+      if (index !== -1 && createTerminplanerForm.appointments.length > 1) {
         createTerminplanerForm.appointments.splice(index, 1);
       }
     };

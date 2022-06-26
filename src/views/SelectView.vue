@@ -1,7 +1,7 @@
 <template>
   <div v-if="active_terminplaner" class="terminplaner_select">
     <a-typography-title>{{ terminplaner_title }}</a-typography-title>
-    <a-typography-title :level="3" class="terminplaner_name">Terminplaner von {{ terminplaner_name }}</a-typography-title>
+    <a-typography-title :level="3" class="terminplaner_name">Umfrage von {{ terminplaner_name }}</a-typography-title>
 
     <div class="terminplaner_description">{{terminplaner_description}}</div>
 

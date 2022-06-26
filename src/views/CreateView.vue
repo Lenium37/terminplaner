@@ -56,7 +56,8 @@
       >
         <a-time-picker 
           v-model:value="appointment.time_start"
-          format="HH:mm" 
+          :showNow="false"
+          format="HH:mm"
           placeholder="Startzeit"
         />
       </a-form-item>
@@ -65,7 +66,8 @@
         :name="['appointments', index, 'time_end']"
       >
         <a-time-picker 
-          v-model:value="appointment.time_end" 
+          v-model:value="appointment.time_end"
+          :showNow="false"
           format="HH:mm"
           placeholder="Endzeit"
         />
@@ -182,8 +184,12 @@ export default defineComponent({
       router.push({
         name: "select",
         params: {
-          "appointments": JSON.stringify(appointments),
-            // "data": appointments[0].time_start.hour.toString(),
+          "terminplaner": JSON.stringify(createTerminplanerForm),
+          // "title": createTerminplanerForm.title,
+          // "description": createTerminplanerForm.description,
+          // "name": createTerminplanerForm.name,
+          // "place": createTerminplanerForm.place,
+          // "appointments": JSON.stringify(appointments),
           },
       });
 

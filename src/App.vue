@@ -27,6 +27,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 </template>
 
 <style>
+@import "@/assets/terminplaner.css";
 @import "@/assets/base.css";
 
 #app {

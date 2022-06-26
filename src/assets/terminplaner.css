@@ -1,0 +1,22 @@
+.terminplaner_select .ant-list {
+    margin-bottom: 20px;
+    border: 2px solid #0F52BA;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.terminplaner_select .ant-typography + h5.ant-typography,
+.terminplaner_select h4.ant-typography {
+    margin: 0;
+}
+
+.terminplaner_select .terminplaner_title,
+.terminplaner_select .terminplaner_name,
+.terminplaner_select .terminplaner_description,
+.terminplaner_select .terminplaner_place {
+    margin-bottom: 20px;
+}
+
+.terminplaner_select .appointments {
+    padding-top: 10px;
+}

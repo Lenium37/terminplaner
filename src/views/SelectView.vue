@@ -20,10 +20,27 @@
           v-for="appointment in appointments"
           style="display: flex;"
         >
-        <a-typography-title :level="4">{{appointment.date}}</a-typography-title>
 
-        <a-typography-title :level="5" v-if="appointment.time_end">{{appointment.time_start}} Uhr - {{appointment.time_end}} Uhr</a-typography-title>
-        <a-typography-title :level="5" v-else>{{appointment.time_start}} Uhr</a-typography-title>
+        <a-row type="flex">
+
+          <a-col flex="auto">
+            <a-typography-title :level="4">{{appointment.date}}</a-typography-title>
+
+            <a-typography-title :level="5" v-if="appointment.time_end">{{appointment.time_start}} Uhr - {{appointment.time_end}} Uhr</a-typography-title>
+            <a-typography-title :level="5" v-else>{{appointment.time_start}} Uhr</a-typography-title>
+
+          </a-col>
+
+          <a-col flex="1 1 30px" class="appointment_checkbox">
+            <span class="selection_counter">0</span>
+            <team-outlined />
+            <!-- <a-divider type="vertical" /> -->
+            <a-checkbox></a-checkbox>
+          </a-col>
+
+        </a-row>
+        
+
 
       </a-list>
     </div>
@@ -37,7 +54,7 @@
 
 
 <script lang="ts">
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import { MinusCircleOutlined, PlusOutlined, TeamOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref} from 'vue';
 import type { FormInstance } from 'ant-design-vue';
 import dayjs from 'dayjs';
@@ -56,6 +73,7 @@ export default defineComponent({
   components: {
     MinusCircleOutlined,
     PlusOutlined,
+    TeamOutlined
   },
 
   setup() {

@@ -19,4 +19,66 @@
 
 .terminplaner_select .appointments {
     padding-top: 10px;
+    min-width: 280px;
+}
+
+.terminplaner_select .appointment_checkbox {
+    flex: 0 0 33px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -ms-transform: translate(-10px, -50%);
+    transform: translate(-10px, -50%);
+}
+
+.terminplaner_select input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
+}
+  
+.terminplaner_select .ant-checkbox-inner {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.2); /* IE */
+    -moz-transform: scale(1.2); /* FF */
+    -webkit-transform: scale(1.2); /* Safari and Chrome */
+    -o-transform: scale(1.2); /* Opera */
+    transform: scale(1.2);
+    padding: 10px;
+    border: 2px solid #0F52BA;
+}
+
+
+.terminplaner_select .ant-divider-vertical {
+    border-left: 2px solid #0F52BA;
+}
+
+.terminplaner_select  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #0F52BA;
+    border-color: #0F52BA;
+}
+
+.terminplaner_select .ant-spin-nested-loading {
+    flex-grow: 1;
+}
+
+.terminplaner_select svg {
+    width: 20px;
+    height: 20px;
+    top: 1px;
+    right: 25px;
+}
+
+.terminplaner_select .selection_counter {
+    font-size: 19px;
+    right: 28px;
+    top: -2px;
+}
+
+.terminplaner_select .ant-col h4+h5 {
+    padding-right: 150px;
 }

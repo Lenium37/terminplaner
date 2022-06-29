@@ -17,7 +17,8 @@
 
     <div class="appointments">
       <a-list
-          v-for="appointment in appointments"
+          v-for="(appointment, index) in appointments"
+          :key="appointment.id"
           style="display: flex;"
         >
 
@@ -32,10 +33,20 @@
           </a-col>
 
           <a-col flex="1 1 30px" class="appointment_checkbox">
-            <span class="selection_counter">0</span>
+            <span class="selection_counter" :value="selection_count_live[index]">{{ selection_count_live[index] }}</span>
             <team-outlined />
             <!-- <a-divider type="vertical" /> -->
-            <a-checkbox></a-checkbox>
+            <!-- <a-checkbox
+              v-id="appointment.id"
+              v-model="appointment.my_selection"
+              :change="updateSelectionCount(appointment)"
+              >
+            </a-checkbox> -->
+            <a-checkbox
+              v-model="appointment.my_selection"
+              @change="updateSelectionCount(appointment, index)"
+              >
+            </a-checkbox>
           </a-col>
 
         </a-row>
@@ -67,6 +78,7 @@ interface AppointmentSelect {
   date: string;
   time_start: string;
   time_end: string;
+  my_selection: boolean;
 }
 
 export default defineComponent({
@@ -81,6 +93,7 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
 
+
     var active_terminplaner = false;
     var terminplaner_title = "Titel";
     var terminplaner_name = "Unbekannt";
@@ -88,9 +101,10 @@ export default defineComponent({
     var terminplaner_place = "Ort";
     var appointments: AppointmentSelect[] = [];
     var number_of_appointments = 1;
+    var my_selection: number[] = reactive([]);
+    var selection_count: number[] = reactive([]);
+    var selection_count_live: number[] = reactive([]);
 
-    console.log("Welcome")
-    // console.log(route.params)
     if (route.params["terminplaner"] != undefined) {
       active_terminplaner = true;
       let json_string: string = route.params["terminplaner"].toString();
@@ -116,13 +130,28 @@ export default defineComponent({
           "time_start": dayjs(parsed_form.appointments[i].time_start).format("HH:mm"),
           "time_end": time_end,
           "id": parsed_form.appointments[i].id,
+          "my_selection": false,
         });
         console.log("added entry, ID:", parsed_form.appointments[i].id);
+
+        selection_count.push(i*2);
+        my_selection.push(0);
       }
-      // console.log("name:", terminplaner_name);
+
+      selection_count_live = selection_count;
     } else {
       router.push("/")
     }
+
+    const updateSelectionCount = (appointment: AppointmentSelect, index: number) => {
+      if (my_selection[index] == 1) {
+        my_selection[index] = 0;
+        selection_count_live[index]--;
+      } else {
+        my_selection[index] = 1;
+        selection_count_live[index]++;
+      }
+    };
 
     return {
       formRef,
@@ -132,8 +161,12 @@ export default defineComponent({
       terminplaner_description,
       terminplaner_place,
       appointments,
-      number_of_appointments
+      number_of_appointments,
+      my_selection,
+      selection_count_live,
+      updateSelectionCount
     };
   },
+
 });
 </script>

@@ -31,23 +31,13 @@
     transform: translate(-10px, -50%);
 }
 
-.terminplaner_select input[type=checkbox] {
-    /* Double-sized Checkboxes */
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    transform: scale(2);
-    padding: 10px;
-}
-  
 .terminplaner_select .ant-checkbox-inner {
     /* Double-sized Checkboxes */
-    -ms-transform: scale(1.2); /* IE */
-    -moz-transform: scale(1.2); /* FF */
-    -webkit-transform: scale(1.2); /* Safari and Chrome */
-    -o-transform: scale(1.2); /* Opera */
-    transform: scale(1.2);
+    -ms-transform: scale(1.1); /* IE */
+    -moz-transform: scale(1.1); /* FF */
+    -webkit-transform: scale(1.1); /* Safari and Chrome */
+    -o-transform: scale(1.1); /* Opera */
+    transform: scale(1.1);
     padding: 10px;
     border: 2px solid #0F52BA;
 }
@@ -79,6 +69,17 @@
     top: -2px;
 }
 
-.terminplaner_select .ant-col h4+h5 {
+.terminplaner_select .ant-col h4,
+.terminplaner_select .ant-col h5 {
     padding-right: 150px;
+    font-weight: 400;
+
+}
+
+.terminplaner_select .ant-col h4 {
+    font-size: 15px;
+}
+
+.terminplaner_select .ant-col h5 {
+    font-size: 13px;
 }

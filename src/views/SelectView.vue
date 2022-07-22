@@ -1,16 +1,11 @@
 <template>
   <div v-if="active_terminplaner" class="terminplaner_select">
     <a-typography-title>{{ terminplaner_title }}</a-typography-title>
-    <a-typography-title :level="3" class="terminplaner_name">Umfrage von {{ terminplaner_name }}</a-typography-title>
+    <a-typography-title :level="3" class="terminplaner_name">Umfrage von: {{ terminplaner_name }}</a-typography-title>
 
     <div class="terminplaner_description">{{terminplaner_description}}</div>
 
-    <div class="terminplaner_place" v-if="terminplaner_place">{{terminplaner_place}}</div>
-
-    <!-- <li v-for="appointment in appointments">
-      {{ appointment.time_start }}
-    </li> -->
-
+    <div class="terminplaner_place" v-if="terminplaner_place">Ort: {{terminplaner_place}}</div>
 
     <div v-if="number_of_appointments === 1">{{number_of_appointments}} Termin:</div>
     <div v-else>{{number_of_appointments}} Termine:</div>
@@ -50,10 +45,9 @@
           </a-col>
 
         </a-row>
-        
-
-
       </a-list>
+
+      <a-button type="primary" html-type="submit" style="float: right;" @click="sendSelection">Absenden</a-button>
     </div>
   </div>
   <div v-else>
@@ -153,6 +147,23 @@ export default defineComponent({
       }
     };
 
+    const sendSelection = () => {
+      router.push({
+        name: "result",
+        params: {
+          "appointments": JSON.stringify(appointments),
+          "selection_count": JSON.stringify(selection_count_live),
+          "terminplaner_data": JSON.stringify({
+              "title": terminplaner_title,
+              "name": terminplaner_name,
+              "description": terminplaner_description,
+              "place": terminplaner_place,
+          }),
+          },
+      });
+
+    };
+
     return {
       formRef,
       active_terminplaner,
@@ -164,7 +175,8 @@ export default defineComponent({
       number_of_appointments,
       my_selection,
       selection_count_live,
-      updateSelectionCount
+      updateSelectionCount,
+      sendSelection
     };
   },
 

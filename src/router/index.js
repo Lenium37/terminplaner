@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateView from "../views/CreateView.vue";
 import SelectView from "../views/SelectView.vue";
+import ResultView from "../views/ResultView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,12 @@ const router = createRouter({
       path: "/select",
       name: "select",
       component: SelectView,
+      props: true,
+    },
+    {
+      path: "/result",
+      name: "result",
+      component: ResultView,
       props: true,
     },
     {

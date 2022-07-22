@@ -1,3 +1,9 @@
+.terminplaner_select {
+    max-width: 500px;
+    margin-bottom: 50px;
+}
+
+
 .terminplaner_select .ant-list {
     margin-bottom: 20px;
     border: 2px solid #0F52BA;
@@ -20,6 +26,8 @@
 .terminplaner_select .appointments {
     padding-top: 10px;
     min-width: 280px;
+    max-width: 333px;
+    margin: auto;
 }
 
 .terminplaner_select .appointment_checkbox {
@@ -83,3 +91,29 @@
 .terminplaner_select .ant-col h5 {
     font-size: 13px;
 }
+
+
+
+
+.terminplaner_select.terminplaner_result .ant-list {
+    margin-bottom: 15px;
+    padding: 7px;
+}
+
+.terminplaner_select.terminplaner_result .selection_counter {
+    right: 1px;
+}
+
+.terminplaner_result .most_selected .ant-typography {
+    color: #0F52BA;
+    font-weight: bold;
+}
+
+.terminplaner_select.terminplaner_result svg {
+    right: -1px;
+}
+
+.terminplaner_result .most_selected .ant-col.appointment_checkbox {
+    color: #0F52BA;
+}
+

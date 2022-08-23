@@ -165,6 +165,21 @@ export default defineComponent({
       });
     };
 
+    const fillWithTestAppointments = () => {
+      let dates = [dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20')];
+      let times_start = [dayjs('10:00', 'HH:mm'),dayjs('10:30', 'HH:mm'),dayjs('11:00', 'HH:mm'),dayjs('11:30', 'HH:mm'),dayjs('12:00', 'HH:mm'),dayjs('12:30', 'HH:mm'),dayjs('13:00', 'HH:mm'),dayjs('13:30', 'HH:mm'),dayjs('14:00', 'HH:mm'),dayjs('14:30', 'HH:mm'),dayjs('15:00', 'HH:mm'),dayjs('15:30', 'HH:mm'),dayjs('16:00', 'HH:mm'),dayjs('16:30', 'HH:mm'),dayjs('17:00', 'HH:mm')];
+      let times_end = [dayjs('10:30', 'HH:mm'),dayjs('11:00', 'HH:mm'),dayjs('11:30', 'HH:mm'),dayjs('12:00', 'HH:mm'),dayjs('12:30', 'HH:mm'),dayjs('13:00', 'HH:mm'),dayjs('13:30', 'HH:mm'),dayjs('14:00', 'HH:mm'),dayjs('14:30', 'HH:mm'),dayjs('15:00', 'HH:mm'),dayjs('15:30', 'HH:mm'),dayjs('16:00', 'HH:mm'),dayjs('16:30', 'HH:mm'),dayjs('17:00', 'HH:mm'),dayjs('17:30', 'HH:mm')];
+      for (let idx = 0; idx < dates.length; idx++) {
+        createTerminplanerForm.appointments.push({
+          date: dates[idx],
+          time_start: times_start[idx],
+          time_end: times_end[idx],
+          id: Date.now(),
+        });
+      }
+    }
+    fillWithTestAppointments();
+
     const onFinish = values => {
       // console.log('Received values of form:', values);
       console.log('dynamicValidateForm.title:', createTerminplanerForm.title);

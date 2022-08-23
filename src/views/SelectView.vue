@@ -128,7 +128,7 @@ export default defineComponent({
         });
         console.log("added entry, ID:", parsed_form.appointments[i].id);
 
-        selection_count.push(i*2);
+        selection_count.push(Math.floor(Math.random() * 10));
         my_selection.push(0);
       }
 

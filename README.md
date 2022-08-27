@@ -1,6 +1,6 @@
 # Terminplaner
 
-You need to install nodeJS (tested only with versions 16+).
+You need to install [nodeJS](https://nodejs.org/en/download/) (tested only with versions 16+).
 
 Clone this repository:
 ```sh

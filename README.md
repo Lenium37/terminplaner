@@ -1,35 +1,23 @@
-# .
+# Terminplaner
 
-This template should help get you started developing with Vue 3 in Vite.
+You need to install [nodeJS](https://nodejs.org/en/download/) (tested only with versions 16+).
 
-## Recommended IDE Setup
+Clone this repository:
+```sh
+git clone https://github.com/Lenium37/terminplaner.git
+```
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+In its main directory, install the necessary packages:
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Hosting the application for the network:
+```sh
+npm run dev -- --host
+```
 
+Only running it locally:
 ```sh
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```

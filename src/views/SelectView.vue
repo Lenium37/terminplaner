@@ -30,13 +30,6 @@
           <a-col flex="1 1 30px" class="appointment_checkbox">
             <span class="selection_counter" :value="selection_count_live[index]">{{ selection_count_live[index] }}</span>
             <team-outlined />
-            <!-- <a-divider type="vertical" /> -->
-            <!-- <a-checkbox
-              v-id="appointment.id"
-              v-model="appointment.my_selection"
-              :change="updateSelectionCount(appointment)"
-              >
-            </a-checkbox> -->
             <a-checkbox
               v-model="appointment.my_selection"
               @change="updateSelectionCount(appointment, index)"
@@ -52,7 +45,6 @@
   </div>
   <div v-else>
       <a-typography-title>Kein Terminplaner aktiv</a-typography-title>
-      <!-- <router-link :to="/"></router-link> -->
   </div>
   
 </template>

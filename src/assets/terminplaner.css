@@ -26,7 +26,6 @@
 .terminplaner_select .appointments {
     padding-top: 10px;
     min-width: 280px;
-    max-width: 333px;
     margin: auto;
 }
 
@@ -117,3 +116,23 @@
     color: #0F52BA;
 }
 
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div#app {
+    max-width: 555px;
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: 2rem !important;
+        place-items: flex-start !important;
+    }
+}
+
+.ant-checkbox-checked .ant-checkbox-inner::after {
+    left: 5px;
+}

@@ -28,11 +28,13 @@
           <a-input v-model:value="createTerminplanerForm.place" />
       </a-form-item>
 
+    <div class="flex-container">
     <a-space
       v-for="(appointment, index) in createTerminplanerForm.appointments"
       :key="appointment.id"
-      style="display: flex; margin-bottom: 8px"
+      style="margin-bottom: 8px"
     >
+    
       <a-form-item
         :name="['appointments', index, 'date']"
         :rules="{
@@ -57,6 +59,7 @@
         <a-time-picker 
           v-model:value="appointment.time_start"
           :showNow="false"
+          :allowClear="false"
           format="HH:mm"
           placeholder="Startzeit"
         />
@@ -68,6 +71,7 @@
         <a-time-picker 
           v-model:value="appointment.time_end"
           :showNow="false"
+          :allowClear="false"
           format="HH:mm"
           placeholder="Endzeit"
         />
@@ -78,6 +82,7 @@
         style="margin-bottom: 24px;"
       />
     </a-space>
+    </div>
 
     <a-form-item>
       <a-button type="dashed" block @click="addAppointment">
@@ -166,6 +171,7 @@ export default defineComponent({
     };
 
     const fillWithTestAppointments = () => {
+      createTerminplanerForm.appointments = [];
       let dates = [dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20'),dayjs('2022-08-20')];
       let times_start = [dayjs('10:00', 'HH:mm'),dayjs('10:30', 'HH:mm'),dayjs('11:00', 'HH:mm'),dayjs('11:30', 'HH:mm'),dayjs('12:00', 'HH:mm'),dayjs('12:30', 'HH:mm'),dayjs('13:00', 'HH:mm'),dayjs('13:30', 'HH:mm'),dayjs('14:00', 'HH:mm'),dayjs('14:30', 'HH:mm'),dayjs('15:00', 'HH:mm'),dayjs('15:30', 'HH:mm'),dayjs('16:00', 'HH:mm'),dayjs('16:30', 'HH:mm'),dayjs('17:00', 'HH:mm')];
       let times_end = [dayjs('10:30', 'HH:mm'),dayjs('11:00', 'HH:mm'),dayjs('11:30', 'HH:mm'),dayjs('12:00', 'HH:mm'),dayjs('12:30', 'HH:mm'),dayjs('13:00', 'HH:mm'),dayjs('13:30', 'HH:mm'),dayjs('14:00', 'HH:mm'),dayjs('14:30', 'HH:mm'),dayjs('15:00', 'HH:mm'),dayjs('15:30', 'HH:mm'),dayjs('16:00', 'HH:mm'),dayjs('16:30', 'HH:mm'),dayjs('17:00', 'HH:mm'),dayjs('17:30', 'HH:mm')];
@@ -178,12 +184,10 @@ export default defineComponent({
         });
       }
     }
-    fillWithTestAppointments();
+    //fillWithTestAppointments();
 
     const onFinish = values => {
-      // console.log('Received values of form:', values);
       console.log('dynamicValidateForm.title:', createTerminplanerForm.title);
-      // console.log('dynamicValidateForm.appointments:', createTerminplanerForm.appointments);
 
       for (let i = 0; i < createTerminplanerForm.appointments.length; i++) {
         let appointment = createTerminplanerForm.appointments[i];
@@ -200,11 +204,6 @@ export default defineComponent({
         name: "select",
         params: {
           "terminplaner": JSON.stringify(createTerminplanerForm),
-          // "title": createTerminplanerForm.title,
-          // "description": createTerminplanerForm.description,
-          // "name": createTerminplanerForm.name,
-          // "place": createTerminplanerForm.place,
-          // "appointments": JSON.stringify(appointments),
           },
       });
 

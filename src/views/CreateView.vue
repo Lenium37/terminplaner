@@ -60,6 +60,7 @@
           v-model:value="appointment.time_start"
           :showNow="false"
           :allowClear="false"
+          :minuteStep="5"
           format="HH:mm"
           placeholder="Startzeit"
         />
@@ -72,6 +73,7 @@
           v-model:value="appointment.time_end"
           :showNow="false"
           :allowClear="false"
+          :minuteStep="5"
           format="HH:mm"
           placeholder="Endzeit"
         />
